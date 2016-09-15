@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="starter" ng-controller="MainCtrl">
+
+    <ion-pane>
+      <ion-header-bar class="bar-stable">
+        <h1 class="title">Chat Client App</h1>
+      </ion-header-bar>
+      <ion-content>
+
+<!--
+    This is the wrapper for the name input. The ng-show attribute tells
+    Angular to only show this div (and it's contents) if the "showNameInput"
+    scope variable is set to True. This allows us to hide/show this screen
+    from our controller.
+-->
+<div ng-show="showNameInput" class="card">
+  <!-- Set the heading of the name input card -->
+  <div class="item item-divider">
+      Enter Name
+  </div>
+  <!-- This is the main input area where the name input will be. -->
+  <div class="item item-text-wrap">
+      <!-- Define the input element for the name text field. -->
+      <label class="item item-input">
+          <!--
+            The ng-model attribute links the contents of this input
+            box with the "userName" scope variable.
+          -->
+          <input ng-model="userName" type="text" placeholder="Name">
+      </label>
+      <!-- Define the join button.  -->
+      <label class="item item-input">
+          <!--
+            This is the button definition. The ng-click attribute tells
+            Angular to call the "submitName()" function, passing in the
+            "userName" scope variable (that we defined above) when clicked.
+          -->
+          <button ng-click="submitName(userName)" class="button button-block button-positive">
+              Join Chat
+          </button>
+      </label>
+  </div>
+</div>
+
+<!--
+  This is the wrapper for the chat screen. The ng-show attribute tells
+  Angular to only show this div (and it's contents) if the "showChatScreen"
+  scope variable is set to True. This allows us to hide/show this screen
+  from our controller.
+-->
+<div ng-show="showChatScreen" class="card">
+  <!--
+    This is the chat screen heading. The {{userName}} part simply prints
+    the "userName" scope variable.
+  -->
+  <div class="item item-divider">
+      Chatting as <strong><em>{{userName}}</em></strong>
+  </div>
+  <!-- This is the chat input/message log card. -->
+  <div class="item item-text-wrap">
+      <div class="list">
+          <!-- Define the textarea which will be used to display the messages. -->
+          <label class="item item-input">
+              <!--
+                This is the text area which will contian the chat messages.
+                The id attribute is set because we need to access the element
+                in order to keep the scroll focus to the bottom of the text,
+                so users can see the latest messages without having to scroll.
+
+                The ng-model sets tht eonctents of this textarea to the
+                "messageLog" scope variable.
+
+                The "style" attribute is required to prevent users being able
+                to resize the box.
+
+                The "readonly" attribute means users cannot directly edit
+                the contents of the chat.
+
+              -->
+              <textarea
+                id="messageLog"
+                ng-model="messageLog"
+                style="resize: none;"
+                rows="10"
+                readonly>
+              </textarea>
+          </label>
+
+          <!-- This is for the message input and send button -->
+          <div class="item item-input-inset">
+              <label class="item-input-wrapper">
+                  <!-- Set the contents of this input to be the "message" scope variable -->
+                  <input ng-model="message" type="text" placeholder="Message">
+              </label>
+              <!--
+                The ng-click attribute in this button will firstly call the
+                "sendMessage() scope function, passing in the "message" scope
+                variable which is defined in the input field above...
+
+                Finally, it will set the "message" scope varibale to blank,
+                ready for the users next input.
+              -->
+              <button ng-click="sendMessage(message); message = ''" class="button button-small">
+                  Send
+              </button>
+
+          </div>
+
+      </div>
+  </div>
+</div>
+
+      </ion-content>
+    </ion-pane>
+  </body>
+</html>
