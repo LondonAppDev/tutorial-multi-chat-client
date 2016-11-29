@@ -25,6 +25,7 @@ angular.module('starter', ['ionic'])
 // First, we define our controller. The $scope and $document parameters tell angular
 // to inject these objects, making them accessible from our controller.
 .controller('MainCtrl', function($scope, $document) {
+
     // Output to the log so we know when our controller is loaded.
     console.log('MainCtrl loaded.');
 
@@ -140,7 +141,7 @@ angular.module('starter', ['ionic'])
         connect();
         // Toggle the screens (hide the name input, show the chat screen)
         toggleScreens();
-    }
+    };
 
     /** This is the scope function that is called when a users hits send. */
     $scope.sendMessage = function sendMessage(msg) {
@@ -148,5 +149,5 @@ angular.module('starter', ['ionic'])
         var nameAndMsg = $scope.userName + ": " + msg;
         // Send the data to our WebSocket connection.
         ws.send(nameAndMsg);
-    }
+    };
 })
